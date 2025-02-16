@@ -19,14 +19,15 @@ def cut_words(file="数学原始数据.csv"):
     return result
 
 # 训练 Gensim Word2Vec CBOW 模型
-def train_word2vec(data, embedding_dim=107, window=3, min_count=1, workers=4):
+def train_word2vec(data, embedding_dim=107, window=3, min_count=1, workers=4, epochs=5):
     # 使用 Gensim 训练 Word2Vec 模型（CBOW）
     model = Word2Vec(sentences=data,
                      vector_size=embedding_dim,  # 嵌入维度
                      window=window,              # 上下文窗口大小
                      min_count=min_count,        # 最小词频
                      sg=0,                       # sg=0 表示使用 CBOW，sg=1 使用 Skip-Gram
-                     workers=workers)            # 使用的并行工作线程数
+                     workers=workers,
+                     epochs=epochs)            # 使用的并行工作线程数
     return model
 
 if __name__ == "__main__":
